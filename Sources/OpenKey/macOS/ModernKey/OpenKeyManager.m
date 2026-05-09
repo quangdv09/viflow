@@ -25,6 +25,7 @@ extern NSString* ConvertUtil(NSString* str);
 
 }
 static BOOL _isInited = NO;
+static const BOOL kUpdateCheckTemporarilyDisabled = YES;
 
 static CFMachPortRef      eventTap;
 static CGEventMask        eventMask;
@@ -147,7 +148,23 @@ static CFRunLoopSourceRef runLoopSource;
 
 #pragma mark -AutoUpdate feature
 
++(BOOL)isUpdateCheckEnabled {
+    return !kUpdateCheckTemporarilyDisabled;
+}
+
 +(void)checkNewVersion:(NSWindow*)parent callbackFunc:(CheckNewVersionCallback) callback {
+    if (![self isUpdateCheckEnabled]) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (callback != nil) {
+                callback();
+                [self showMessage:parent
+                          message:@"Tính năng cập nhật tạm thời tắt"
+                           subMsg:@"Sẽ bật lại trong bản cập nhật tới."];
+            }
+        });
+        return;
+    }
+
     //load new version config
     NSURLSession *aSession = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration]];
     [[aSession dataTaskWithURL:[NSURL URLWithString:@"https://raw.githubusercontent.com/tuyenvm/OpenKey/master/version.json"] completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {

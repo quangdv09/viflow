@@ -26,6 +26,13 @@
     
     NSInteger dontCheckUpdate = [[NSUserDefaults standardUserDefaults] integerForKey:@"DontCheckUpdate"];
     self.CheckUpdateOnStatus.state = dontCheckUpdate ? NSControlStateValueOff :NSControlStateValueOn;
+
+    if (![OpenKeyManager isUpdateCheckEnabled]) {
+        self.CheckUpdateOnStatus.state = NSControlStateValueOff;
+        self.CheckUpdateOnStatus.enabled = NO;
+        self.CheckNewVersionButton.enabled = NO;
+        self.CheckNewVersionButton.title = @"Tạm thời tắt";
+    }
 }
 
 - (IBAction)onHomePage:(id)sender {
@@ -41,11 +48,20 @@
 }
 
 - (IBAction)onCheckUpdateOnStartup:(NSButton *)sender {
+    if (![OpenKeyManager isUpdateCheckEnabled]) {
+        sender.state = NSControlStateValueOff;
+        return;
+    }
     NSInteger val = sender.state == NSControlStateValueOn ? 0 : 1;
     [[NSUserDefaults standardUserDefaults] setInteger:val forKey:@"DontCheckUpdate"];
 }
 
 - (IBAction)onCheckNewVersion:(id)sender {
+    if (![OpenKeyManager isUpdateCheckEnabled]) {
+        [OpenKeyManager checkNewVersion:self.view.window callbackFunc:^{
+        }];
+        return;
+    }
     
     self.CheckNewVersionButton.title = @"Đang kiểm tra...";
     self.CheckNewVersionButton.enabled = false;

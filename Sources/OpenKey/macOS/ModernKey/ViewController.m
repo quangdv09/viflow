@@ -351,6 +351,10 @@ extern int vPerformLayoutCompat;
 }
 
 - (IBAction)onCheckNewVersionOnStartup:(NSButton *)sender {
+    if (![OpenKeyManager isUpdateCheckEnabled]) {
+        sender.state = NSControlStateValueOff;
+        return;
+    }
     NSInteger val = sender.state == NSControlStateValueOn ? 0 : 1;
     [[NSUserDefaults standardUserDefaults] setInteger:val forKey:@"DontCheckUpdate"];
 }
@@ -455,6 +459,17 @@ extern int vPerformLayoutCompat;
     
     value = [[NSUserDefaults standardUserDefaults] integerForKey:@"DontCheckUpdate"];
     self.CheckNewVersionOnStartup.state = value ? NSControlStateValueOff :NSControlStateValueOn;
+
+    if (![OpenKeyManager isUpdateCheckEnabled]) {
+        self.CheckNewVersionOnStartup.state = NSControlStateValueOff;
+        self.CheckNewVersionOnStartup.enabled = NO;
+        self.CheckNewVersionButton.enabled = NO;
+        self.CheckNewVersionButton.title = @"Tạm thời tắt";
+    } else {
+        self.CheckNewVersionOnStartup.enabled = YES;
+        self.CheckNewVersionButton.enabled = YES;
+        self.CheckNewVersionButton.title = @"Kiểm tra bản mới…";
+    }
     
     value = [[NSUserDefaults standardUserDefaults] integerForKey:@"vFixChromiumBrowser"];
     self.FixChromiumBrowser.state = value ? NSControlStateValueOn : NSControlStateValueOff;
@@ -510,6 +525,12 @@ extern int vPerformLayoutCompat;
 }
 
 - (IBAction)onCheckNewVersionButton:(id)sender {
+    if (![OpenKeyManager isUpdateCheckEnabled]) {
+        [OpenKeyManager checkNewVersion:self.view.window callbackFunc:^{
+        }];
+        return;
+    }
+
     self.CheckNewVersionButton.title = @"Đang kiểm tra...";
     self.CheckNewVersionButton.enabled = false;
     
