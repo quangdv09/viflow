@@ -67,8 +67,15 @@ extern int vPerformLayoutCompat;
     tabviews = [NSArray arrayWithObjects:self.tabviewPrimary, self.tabviewMacro, self.tabviewSystem, self.tabviewInfo, nil];
     tabbuttons = [NSArray arrayWithObjects:self.tabbuttonPrimary, self.tabbuttonMacro, self.tabbuttonSystem, self.tabbuttonInfo, nil];
     tabViewRect = self.tabviewPrimary.frame;
+    // Lift content panels so they sit tighter under the tabs.
+    tabViewRect.origin.y += 12;
     for (NSBox* b in tabviews) {
         b.frame = tabViewRect;
+        [self.viewParent addSubview:b positioned:NSWindowBelow relativeTo:nil];
+    }
+    // Keep tab buttons above content panels to match the native segmented-tab look.
+    for (NSButton* b in tabbuttons) {
+        [self.viewParent addSubview:b positioned:NSWindowAbove relativeTo:nil];
     }
     
     [self showTab:0];

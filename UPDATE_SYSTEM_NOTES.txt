@@ -1,0 +1,88 @@
+GHI CHÚ HỆ THỐNG CẬP NHẬT PHIÊN BẢN (OpenKey/ViFlow)
+
+1) NGUỒN DỮ LIỆU PHIÊN BẢN
+- File trung tâm: version.json (ở root repo).
+- Các key đang dùng:
+  - latestVersion.versionName, latestVersion.versionCode (cho macOS)
+  - latestWinVersion.versionName, latestWinVersion.versionCode (cho Windows)
+- URL macOS/Windows đang đọc:
+  https://raw.githubusercontent.com/tuyenvm/OpenKey/master/version.json
+
+2) LUỒNG CẬP NHẬT TRÊN macOS
+2.1 Kiểm tra tự động khi khởi động
+- Vị trí: Sources/OpenKey/macOS/ModernKey/AppDelegate.m
+- App đọc user default DontCheckUpdate:
+  - DontCheckUpdate = 0 -> cho phép kiểm tra cập nhật tự động
+  - DontCheckUpdate = 1 -> bỏ qua
+- Nếu được phép, gọi:
+  [OpenKeyManager checkNewVersion:nil callbackFunc:nil]
+
+2.2 Kiểm tra thủ công từ giao diện
+- Vị trí: Sources/OpenKey/macOS/ModernKey/ViewController.m và AboutViewController.m
+- Nút "Kiểm tra bản mới..." gọi:
+  [OpenKeyManager checkNewVersion:window callbackFunc:...]
+
+2.3 Hàm kiểm tra phiên bản (macOS)
+- Vị trí: Sources/OpenKey/macOS/ModernKey/OpenKeyManager.m
+- Hàm: +checkNewVersion:callbackFunc:
+- Cách hoạt động:
+  1. Tải version.json từ GitHub raw.
+  2. Parse JSON, lấy latestVersion.versionCode.
+  3. Lấy phiên bản hiện tại từ CFBundleVersion.
+  4. So sánh versionCode > currentVersionCode.
+  5. Hiện alert cập nhật nếu có bản mới.
+
+2.4 Hàm hiển thị hộp thoại cập nhật
+- Vị trí: OpenKeyManager.m, hàm +showUpdateMessage
+- Nếu có bản mới:
+  - Hiện "Có" / "Không"
+  - Chọn "Có" -> gọi +launchUpdateHelper
+
+2.5 Cập nhật thực tế trên macOS
+- Vị trí: OpenKeyManager.m, hàm +launchUpdateHelper
+- Cơ chế:
+  1. Copy OpenKeyUpdate.app từ trong app bundle
+     (Contents/Library/LoginItems/OpenKeyUpdate.app)
+     vào Application Support/OpenKey/OpenKeyUpdate.app
+  2. Mở OpenKeyUpdate.app bằng NSWorkspace
+  3. Thoát app chính
+
+3) LUỒNG CẬP NHẬT TRÊN Windows
+3.1 Kiểm tra bản mới
+- Vị trí: Sources/OpenKey/win32/OpenKey/OpenKey/OpenKeyManager.cpp
+- Hàm: checkUpdate(string& newVersion)
+- Cơ chế:
+  1. Tải version.json từ GitHub raw.
+  2. Parse latestWinVersion.versionName + versionCode.
+  3. Lấy phiên bản hiện tại từ file version executable.
+  4. So sánh qua hàm shiftVersion để map về cùng dạng trước khi so sánh.
+
+3.2 Công cụ update
+- Vị trí: Sources/OpenKey/win32/OpenKey/OpenKeyUpdate/OpenKeyUpdate.cpp
+- Cơ chế:
+  1. Tải version.json
+  2. Lấy latestWinVersion.versionName
+  3. Tạo URL zip release:
+     https://github.com/tuyenvm/OpenKey/releases/download/<version>/OpenKey<version>-Windows.zip
+  4. Tải zip, giải nén bằng Expand-Archive (PowerShell)
+  5. Thay thế OpenKey64.exe
+
+4) CÁC ĐIỂM CẦN LƯU Ý KHI ĐỔI REPO/THƯƠNG HIỆU
+- Nếu đổi repo, bắt buộc đổi tất cả URL sau:
+  - URL version.json (macOS + Windows)
+  - URL releases/homepage/fanpage trong UI (nếu cần)
+- Khuyến nghị:
+  - versionCode nên tăng đơn điệu (1, 2, 3, ...)
+  - Không giảm versionCode, nếu không updater có thể không báo bản mới
+
+5) TRẠNG THÁI HIỆN TẠI
+- Có thể tạm khóa tính năng cập nhật bằng cờ:
+  kUpdateCheckTemporarilyDisabled trong OpenKeyManager.m
+- Hiện tại đã BẬT LẠI tính năng (cờ = NO).
+
+6) CÁCH TẮT/BẬT NHANH TRONG TƯƠNG LAI
+- File: Sources/OpenKey/macOS/ModernKey/OpenKeyManager.m
+- Biến:
+  static const BOOL kUpdateCheckTemporarilyDisabled = NO;
+- Đặt YES -> tắt tạm
+- Đặt NO  -> bật lại
