@@ -1,4 +1,13 @@
-# OpenKey Change Log
+# ViFlow Change Log
+> Fork từ [OpenKey](https://github.com/tuyenvm/OpenKey) của tác giả Mai Vũ Tuyên.
+
+## ViFlow v1.0.1 (11/05/2026)
+- Rebranding từ OpenKey → ViFlow.
+- Cải thiện UI tab (raise panel, z-order).
+- Cập nhật bundle ID, scheme, entitlements.
+
+---
+# OpenKey Change Log (lịch sử gốc)
 
 ##### OpenKey for Linux: (in development)
 
