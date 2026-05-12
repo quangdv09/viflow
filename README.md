@@ -6,7 +6,7 @@
 ### Open source Vietnamese Input App for macOS - Bộ gõ tiếng Việt nguồn mở cho macOS.
 Bộ gõ tiếng Việt mới cho macOS, sử dụng kỹ thuật `Backspace`. Loại bỏ lỗi gạch chân khó chịu ở bộ gõ mặc định. Hoàn toàn miễn phí và là nguồn mở, luôn cập nhật và phát triển.
 
-### Mã nguồn của ứng dụng được mở công khai, minh bạch dưới giấy phép GPL. Điều này nghĩa là bạn hoàn toàn có thể tải mã nguồn về tự build, cải tiến theo mục đích của bạn. Nếu bạn tái phân phối bản cải tiến của bạn, thì nó cũng phải là mã nguồn mở và thông báo bản gốc là ViFlow (fork từ OpenKey).
+### Mã nguồn của ứng dụng được mở công khai, minh bạch dưới giấy phép GPL. Điều này nghĩa là bạn hoàn toàn có thể tải mã nguồn về tự build, cải tiến theo mục đích của bạn. Nếu bạn tái phân phối bản cải tiến của bạn, thì nó cũng phải là mã nguồn mở và ghi nhận nguồn gốc dự án.
 
 ### Lưu ý, khi sử dụng ViFlow, bạn nên tắt hẳn bộ gõ khác vì 2 chương trình bộ gõ sẽ xung đột nhau, dẫn đến thao tác không chính xác.
 
@@ -37,7 +37,7 @@ Bộ gõ tiếng Việt mới cho macOS, sử dụng kỹ thuật `Backspace`. L
 - **Autocorrect fixed** (On/Off) - Sửa lỗi autocorrect trên trình duyệt như Chrome, Safari, Firefox, Microsoft Excel.
 - **Underline issue fixed on macOS** (On/Off) - Sửa lỗi gạch chân trên macOS.
 - **Tạm tắt kiểm tra chính tả bằng phím Ctrl** (On/Off) (Bản 1.5 về sau).
-- **Tạm tắt OpenKey bằng phím Cmd/Alt** (On/Off) (Bản 2.0.1 về sau).
+- **Tạm tắt ViFlow bằng phím Cmd/Alt** (On/Off) (Bản 2.0.1 về sau).
 - **Cho phép dùng f z w j làm phụ âm đầu** (On/Off) (Bản 1.5 về sau).
 - **Gõ tắt phụ âm đầu: f->ph, j->gi, w->qu** (On/Off) (Bản 1.6 về sau).
 - **Gõ tắt phụ âm cuối: g->ng, h->nh, k->ch** (On/Off) (Bản 1.6 về sau).
@@ -62,7 +62,7 @@ Tải bản ViFlow mới nhất từ [đây](https://github.com/quangdv09/viflow
 ViFlow cần cấp quyền, vào *System Settings -> Privacy & Security -> Accessibility*, kích hoạt `ViFlow.app`. **Không tắt nó khi đang dùng ViFlow**.
 
 ## Tác giả
-- ViFlow được fork từ [OpenKey](https://github.com/tuyenvm/OpenKey) của tác giả Mai Vũ Tuyên.
+- ViFlow được phát triển từ mã nguồn gốc của tác giả Mai Vũ Tuyên.
 - Phát triển và duy trì bởi: Đỗ Vinh Quang
 - GitHub: [https://github.com/quangdv09/viflow](https://github.com/quangdv09/viflow)
 

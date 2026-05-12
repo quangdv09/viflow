@@ -80,7 +80,7 @@
 		233C4A6F231F937900DD7052 /* ConvertTool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConvertTool.cpp; sourceTree = "<group>"; };
 		233C4A71231F938800DD7052 /* ConvertTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertTool.h; sourceTree = "<group>"; };
 		233D800222F7D1F000E02DC6 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
-		2344220522F42F70009E47D4 /* OpenKey.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OpenKey.entitlements; sourceTree = "<group>"; };
+		2344220522F42F70009E47D4 /* ViFlow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ViFlow.entitlements; sourceTree = "<group>"; };
 		2345899822F720D7003E0923 /* MacroViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroViewController.h; sourceTree = "<group>"; };
 		2345899922F720D7003E0923 /* MacroViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MacroViewController.mm; sourceTree = "<group>"; };
 		234F70A821FB50BC00D2F2CA /* StatusHighlightedEng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatusHighlightedEng.png; sourceTree = "<group>"; };
@@ -119,7 +119,7 @@
 		2397059923143267002DDEA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		2397059B23143267002DDEA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2397059C23143267002DDEA7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2397059E23143267002DDEA7 /* OpenKeyUpdate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OpenKeyUpdate.entitlements; sourceTree = "<group>"; };
+		2397059E23143267002DDEA7 /* ViFlowUpdate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ViFlowUpdate.entitlements; sourceTree = "<group>"; };
 		23A984BE220ED07E000914A2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		23CA6D1522F0439100804D6E /* MyTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTextField.h; sourceTree = "<group>"; };
 		23CA6D1622F0439100804D6E /* MyTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTextField.m; sourceTree = "<group>"; };
@@ -178,10 +178,10 @@
 			isa = PBXGroup;
 			children = (
 				23E2E4932314FD3A006CCC3E /* engine */,
-				2344220522F42F70009E47D4 /* OpenKey.entitlements */,
+				2344220522F42F70009E47D4 /* ViFlow.entitlements */,
 				232EDA5621F1B33E0085D362 /* ModernKey */,
-				233D800122F7D1F000E02DC6 /* OpenKeyTest */,
-				2397059223143266002DDEA7 /* OpenKeyUpdate */,
+				233D800122F7D1F000E02DC6 /* ViFlowTest */,
+				2397059223143266002DDEA7 /* ViFlowUpdate */,
 				232EDA5521F1B33E0085D362 /* Products */,
 				237559B32204156000FB8CB9 /* ViFlowHelper */,
 				238519F121F1B8E200E79A41 /* Frameworks */,
@@ -191,7 +191,7 @@
 		232EDA5521F1B33E0085D362 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				232EDA5421F1B33E0085D362 /* OpenKey.app */,
+				232EDA5421F1B33E0085D362 /* ViFlow.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,12 +234,12 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		233D800122F7D1F000E02DC6 /* OpenKeyTest */ = {
+		233D800122F7D1F000E02DC6 /* ViFlowTest */ = {
 			isa = PBXGroup;
 			children = (
 				233D800222F7D1F000E02DC6 /* main.mm */,
 			);
-			path = OpenKeyTest;
+			path = ViFlowTest;
 			sourceTree = "<group>";
 		};
 		237559B32204156000FB8CB9 /* ViFlowHelper */ = {
@@ -281,7 +281,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2397059223143266002DDEA7 /* OpenKeyUpdate */ = {
+		2397059223143266002DDEA7 /* ViFlowUpdate */ = {
 			isa = PBXGroup;
 			children = (
 				23310EA02314F31400226CA5 /* Resources */,
@@ -291,9 +291,9 @@
 				2397059823143267002DDEA7 /* MainMenu.xib */,
 				2397059B23143267002DDEA7 /* Info.plist */,
 				2397059C23143267002DDEA7 /* main.m */,
-				2397059E23143267002DDEA7 /* OpenKeyUpdate.entitlements */,
+				2397059E23143267002DDEA7 /* ViFlowUpdate.entitlements */,
 			);
-			path = OpenKeyUpdate;
+			path = ViFlowUpdate;
 			sourceTree = "<group>";
 		};
 		23E2E4932314FD3A006CCC3E /* engine */ = {
@@ -583,7 +583,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = "";
@@ -593,7 +593,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.quangdv09.viflow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -607,7 +607,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEAD_CODE_STRIPPING = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
 				HEADER_SEARCH_PATHS = "";
@@ -617,7 +617,7 @@
 					"@executable_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 11.0;
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.quangdv09.viflow;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

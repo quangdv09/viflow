@@ -1,6 +1,6 @@
 //
 //  MJAccessibilityUtils.m
-//  OpenKey
+//  ViFlow
 //
 //  Created by Nguyen Tan Thong on 18/9/19.
 //  Copyright © 2026 Do Vinh Quang. All rights reserved.

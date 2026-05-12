@@ -33,7 +33,7 @@ extern int vQuickStartConsonant;
 extern int vQuickEndConsonant;
 extern int vRememberCode;
 extern int vOtherLanguage;
-extern int vTempOffOpenKey;
+extern int vTempOffViFlow;
 extern int vShowIconOnDock;
 extern int vAutoCapsMacro;
 extern int vFixChromiumBrowser;
@@ -48,6 +48,42 @@ extern int vPerformLayoutCompat;
     __weak IBOutlet NSButton *CustomBeepSound;
     NSArray* tabviews, *tabbuttons;
     NSRect tabViewRect;
+}
+
+- (void)applyTabZOrder {
+    self.viewParent.wantsLayer = YES;
+    
+    for (NSBox* tabview in tabviews) {
+        tabview.wantsLayer = YES;
+        tabview.layer.zPosition = 0;
+        [self.viewParent addSubview:tabview positioned:NSWindowBelow relativeTo:self.tabbuttonPrimary];
+    }
+    
+    for (NSButton* tabbutton in tabbuttons) {
+        tabbutton.wantsLayer = YES;
+        tabbutton.layer.zPosition = 10;
+        tabbutton.layer.cornerRadius = 8;
+        tabbutton.layer.masksToBounds = YES;
+        tabbutton.bordered = NO;
+        [self.viewParent addSubview:tabbutton positioned:NSWindowAbove relativeTo:nil];
+    }
+}
+
+- (void)updateTabButtonBackgrounds {
+    for (NSButton* tabbutton in tabbuttons) {
+        BOOL selected = tabbutton.state == NSControlStateValueOn;
+        NSColor* backgroundColor = selected
+            ? NSColor.controlAccentColor
+            : [NSColor colorWithWhite:0.90 alpha:1.0];
+        NSColor* textColor = selected ? NSColor.whiteColor : NSColor.labelColor;
+        NSDictionary* attributes = @{
+            NSForegroundColorAttributeName: textColor,
+            NSFontAttributeName: tabbutton.font ?: [NSFont systemFontOfSize:NSFont.systemFontSize],
+        };
+        
+        tabbutton.layer.backgroundColor = backgroundColor.CGColor;
+        tabbutton.attributedTitle = [[NSAttributedString alloc] initWithString:tabbutton.title attributes:attributes];
+    }
 }
 
 - (void)viewDidLoad {
@@ -71,12 +107,8 @@ extern int vPerformLayoutCompat;
     tabViewRect.origin.y += 12;
     for (NSBox* b in tabviews) {
         b.frame = tabViewRect;
-        [self.viewParent addSubview:b positioned:NSWindowBelow relativeTo:nil];
     }
-    // Keep tab buttons above content panels to match the native segmented-tab look.
-    for (NSButton* b in tabbuttons) {
-        [self.viewParent addSubview:b positioned:NSWindowAbove relativeTo:nil];
-    }
+    [self applyTabZOrder];
     
     [self showTab:0];
     
@@ -144,6 +176,9 @@ extern int vPerformLayoutCompat;
     
     NSButton* button = [tabbuttons objectAtIndex:index];
     [button setState:NSControlStateValueOn];
+    
+    [self applyTabZOrder];
+    [self updateTabButtonBackgrounds];
 }
 
 - (IBAction)onTabButton:(NSButton *)sender {
@@ -327,9 +362,9 @@ extern int vPerformLayoutCompat;
     vQuickEndConsonant = (int)val;
 }
 
-- (IBAction)onTempOffOpenKeyByHotKey:(id)sender {
-    NSInteger val = [self setCustomValue:sender keyToSet:@"vTempOffOpenKey"];
-    vTempOffOpenKey = (int)val;
+- (IBAction)onTempOffViFlowByHotKey:(id)sender {
+    NSInteger val = [self setCustomValue:sender keyToSet:@"vTempOffViFlow"];
+    vTempOffViFlow = (int)val;
 }
 
 - (IBAction)onRememberTableCode:(id)sender {
@@ -455,8 +490,8 @@ extern int vPerformLayoutCompat;
     value = [[NSUserDefaults standardUserDefaults] integerForKey:@"vOtherLanguage"];
     self.OtherLanguage.state = value ? NSControlStateValueOn : NSControlStateValueOff;
     
-    value = [[NSUserDefaults standardUserDefaults] integerForKey:@"vTempOffOpenKey"];
-    self.TempOffOpenKey.state = value ? NSControlStateValueOn : NSControlStateValueOff;
+    value = [[NSUserDefaults standardUserDefaults] integerForKey:@"vTempOffViFlow"];
+    self.TempOffViFlow.state = value ? NSControlStateValueOn : NSControlStateValueOff;
     
     value = [[NSUserDefaults standardUserDefaults] integerForKey:@"vAutoCapsMacro"];
     self.AutoCapsMacro.state = value ? NSControlStateValueOn : NSControlStateValueOff;

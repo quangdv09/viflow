@@ -1,6 +1,6 @@
 //
-//  OpenKey.m
-//  OpenKey
+//  ViFlow.m
+//  ViFlow
 //
 //  Created by Tuyen on 1/18/19.
 //  Copyright © 2026 Do Vinh Quang. All rights reserved.
@@ -107,7 +107,7 @@ extern "C" {
         LOAD_DATA(vQuickStartConsonant, vQuickStartConsonant);
         LOAD_DATA(vRememberCode, vRememberCode);
         LOAD_DATA(vOtherLanguage, vOtherLanguage);
-        LOAD_DATA(vTempOffOpenKey, vTempOffOpenKey);
+        LOAD_DATA(vTempOffViFlow, vTempOffViFlow);
         
         LOAD_DATA(vFixChromiumBrowser, vFixChromiumBrowser);
         
@@ -153,7 +153,7 @@ extern "C" {
     }
     
     void queryFrontMostApp() {
-        if ([[[NSWorkspace sharedWorkspace] frontmostApplication].bundleIdentifier compare:OPENKEY_BUNDLE] != 0) {
+        if ([[[NSWorkspace sharedWorkspace] frontmostApplication].bundleIdentifier compare:VIFLOW_BUNDLE] != 0) {
             _frontMostApp = [[NSWorkspace sharedWorkspace] frontmostApplication].bundleIdentifier;
             if (_frontMostApp == nil)
                 _frontMostApp = [[NSWorkspace sharedWorkspace] frontmostApplication].localizedName != nil ?
@@ -629,7 +629,7 @@ extern "C" {
                 if (vTempOffSpelling && !_hasJustUsedHotKey && _lastFlag & kCGEventFlagMaskControl) {
                     vTempOffSpellChecking();
                 }
-                if (vTempOffOpenKey && !_hasJustUsedHotKey && _lastFlag & kCGEventFlagMaskCommand) {
+                if (vTempOffViFlow && !_hasJustUsedHotKey && _lastFlag & kCGEventFlagMaskCommand) {
                     vTempOffEngine();
                 }
                 _lastFlag = 0;

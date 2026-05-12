@@ -9,7 +9,7 @@
 #import <Cocoa/Cocoa.h>
 #import "ViewController.h"
 
-#define OPENKEY_BUNDLE @"com.quangdv09.viflow"
+#define VIFLOW_BUNDLE @"com.quangdv09.viflow"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSWindowDelegate>
 

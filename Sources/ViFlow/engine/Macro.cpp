@@ -1,6 +1,6 @@
 //
 //  Macro.cpp
-//  OpenKey
+//  ViFlow
 //
 //  Created by Tuyen on 8/4/19.
 //  Copyright © 2019 Tuyen Mai. All rights reserved.
@@ -248,7 +248,7 @@ void onTableCodeChange() {
 void saveToFile(const string& path) {
     ofstream myfile;
     myfile.open(path.c_str());
-    myfile << ";Compatible OpenKey Macro Data file for UniKey*** version=1 ***\n";
+    myfile << ";Compatible ViFlow Macro Data file for UniKey*** version=1 ***\n";
     for (std::map<vector<Uint32>, MacroData>::iterator it = macroMap.begin(); it != macroMap.end(); ++it) {
         myfile <<it->second.macroText << ":" << it->second.macroContent<<"\n";
     }

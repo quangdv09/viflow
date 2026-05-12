@@ -1,6 +1,6 @@
 //
 //  Macro.h
-//  OpenKey
+//  ViFlow
 //
 //  Created by Tuyen on 8/4/19.
 //  Copyright © 2019 Tuyen Mai. All rights reserved.

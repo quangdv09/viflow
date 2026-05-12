@@ -1,6 +1,6 @@
 //
 //  AboutViewController.h
-//  OpenKey
+//  ViFlow
 //
 //  Created by Tuyen on 2/15/19.
 //  Copyright © 2026 Do Vinh Quang. All rights reserved.
