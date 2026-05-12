@@ -56,7 +56,18 @@ Bộ gõ tiếng Việt mới cho macOS, sử dụng kỹ thuật `Backspace`. L
 
 ## Cài đặt:
 **Cài đặt thủ công:**  
-Tải bản ViFlow mới nhất từ [đây](https://github.com/quangdv09/viflow/releases/latest), mở file `dmg` ra rồi kéo thả `ViFlow.app` vào thư mục `Application`.
+Tải bản ViFlow mới nhất từ [đây](https://github.com/quangdv09/viflow/releases/latest), giải nén file `.zip` rồi kéo thả `ViFlow.app` vào thư mục `Applications`.
+
+## Mở ứng dụng lần đầu (Gatekeeper của macOS):
+Vì ViFlow không được ký bởi Apple Developer ID trả phí, macOS sẽ chặn khi mở lần đầu. Thực hiện một trong hai cách sau:
+
+**Cách 1 (khuyến nghị):** Nhấp chuột phải vào `ViFlow.app` → chọn **Open** → bấm **Open** trong hộp thoại cảnh báo.
+
+**Cách 2:** Nếu macOS vẫn chặn, mở **Terminal** và chạy lệnh:
+```bash
+xattr -cr /Applications/ViFlow.app
+```
+Sau đó mở app bình thường.
 
 ## Note - Lưu ý:
 ViFlow cần cấp quyền, vào *System Settings -> Privacy & Security -> Accessibility*, kích hoạt `ViFlow.app`. **Không tắt nó khi đang dùng ViFlow**.
