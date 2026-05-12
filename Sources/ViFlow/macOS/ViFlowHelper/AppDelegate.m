@@ -17,7 +17,15 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     NSArray* runningApp = [[NSWorkspace sharedWorkspace] runningApplications];
-    if (![runningApp containsObject:@"com.quangdv09.viflow"]) {
+    BOOL mainAppIsRunning = NO;
+    for (NSRunningApplication *app in runningApp) {
+        if ([app.bundleIdentifier isEqualToString:@"com.quangdv09.viflow"]) {
+            mainAppIsRunning = YES;
+            break;
+        }
+    }
+
+    if (!mainAppIsRunning) {
         NSString* path = [[NSBundle mainBundle] bundlePath];
         for (int i = 0; i < 4; i++)
             path = [path stringByDeletingLastPathComponent];

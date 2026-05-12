@@ -324,10 +324,17 @@ extern bool convertToolDontAlertWhenCompleted;
     if (@available(macOS 13.0, *)) {
         SMAppService *service = [SMAppService loginItemServiceWithIdentifier:@"com.quangdv09.viflow.helper"];
         NSError *error = nil;
+        BOOL success = YES;
         if (val) {
-            [service registerAndReturnError:&error];
-        } else {
-            [service unregisterAndReturnError:&error];
+            if (service.status != SMAppServiceStatusEnabled) {
+                success = [service registerAndReturnError:&error];
+            }
+        } else if (service.status != SMAppServiceStatusNotRegistered) {
+            success = [service unregisterAndReturnError:&error];
+        }
+
+        if (!success) {
+            NSLog(@"Unable to update ViFlow login item: %@", error);
         }
     } else {
         CFStringRef appId = (__bridge CFStringRef)@"com.quangdv09.viflow.helper";
