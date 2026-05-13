@@ -1,4 +1,4 @@
-7) GHI CHÚ BUILD/TEST macOS
+1) GHI CHÚ BUILD/TEST macOS
 - Khi cần build app mới để test:
   1. Build trực tiếp bằng Xcode hoặc xcodebuild theo cấu hình project.
   2. Không ký lại app thủ công bằng codesign sau khi build.
