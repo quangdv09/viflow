@@ -63,11 +63,7 @@ Vì ViFlow không được ký bởi Apple Developer ID trả phí, macOS sẽ c
 
 **Cách 1 (khuyến nghị):** Nhấp chuột phải vào `ViFlow.app` → chọn **Open** → bấm **Open** trong hộp thoại cảnh báo.
 
-**Cách 2:** Nếu macOS vẫn chặn, mở **Terminal** và chạy lệnh:
-```bash
-xattr -cr /Applications/ViFlow.app
-```
-Sau đó mở app bình thường.
+**Cách 2:** Nếu macOS vẫn chặn, vào **System Settings** → **Privacy & Security**, tìm thông báo về `ViFlow.app`, bấm **Open Anyway**, rồi xác nhận **Open** để mở ứng dụng.
 
 ## Note - Lưu ý:
 ViFlow cần cấp quyền, vào *System Settings -> Privacy & Security -> Accessibility*, kích hoạt `ViFlow.app`. **Không tắt nó khi đang dùng ViFlow**.

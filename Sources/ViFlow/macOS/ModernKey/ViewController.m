@@ -127,9 +127,8 @@ extern int vPerformLayoutCompat;
     [self fillData];
     
     // set version info
-    self.VersionInfo.stringValue = [NSString stringWithFormat:@"Phiên bản %@ (build %@) - Ngày cập nhật %@",
+    self.VersionInfo.stringValue = [NSString stringWithFormat:@"Phiên bản %@ - Cập nhật ngày %@.",
     [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"],
-    [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleVersion"],
     [ViFlowManager getBuildDate]] ;
 }
 
@@ -516,9 +515,6 @@ extern int vPerformLayoutCompat;
     value = [[NSUserDefaults standardUserDefaults] integerForKey:@"vFixChromiumBrowser"];
     self.FixChromiumBrowser.state = value ? NSControlStateValueOn : NSControlStateValueOff;
     self.FixChromiumBrowser.enabled = fixRecommendBrowser ? YES : NO;
-    
-    value = [[NSUserDefaults standardUserDefaults] integerForKey:@"vPerformLayoutCompat"];
-    self.PerformLayoutCompat.state = value ? NSControlStateValueOn : NSControlStateValueOff;
     
     CustomSwitchControl.state = (vSwitchKeyStatus & 0x100) ? NSControlStateValueOn : NSControlStateValueOff;
     CustomSwitchOption.state = (vSwitchKeyStatus & 0x200) ? NSControlStateValueOn : NSControlStateValueOff;

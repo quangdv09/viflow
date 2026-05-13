@@ -86,3 +86,20 @@ GHI CHÚ HỆ THỐNG CẬP NHẬT PHIÊN BẢN (ViFlow/ViFlow)
   static const BOOL kUpdateCheckTemporarilyDisabled = NO;
 - Đặt YES -> tắt tạm
 - Đặt NO  -> bật lại
+
+7) GHI CHÚ BUILD/TEST macOS
+- Khi cần build app mới để test:
+  1. Build trực tiếp bằng Xcode hoặc xcodebuild theo cấu hình project.
+  2. Không ký lại app thủ công bằng codesign sau khi build.
+  3. Không xoá xattr/quarantine nếu không có yêu cầu đặc biệt.
+  4. Tắt app ViFlow đang chạy.
+  5. Copy ViFlow.app vừa build ra Desktop.
+  6. Mở ViFlow.app mới từ Desktop để kiểm tra.
+- Lý do:
+  - Xcode đã tự sign app theo cấu hình project.
+  - Nếu ký lại thủ công sau mỗi lần build, macOS có thể xem app là bản khác và hỏi cấp quyền Accessibility lại.
+- Quy trình đã kiểm tra ổn:
+  - Build bằng xcodebuild Release.
+  - Không chạy codesign thủ công.
+  - Copy app ra /Users/dovinhquang/Desktop/ViFlow.app bằng ditto.
+  - Mở app bằng open.

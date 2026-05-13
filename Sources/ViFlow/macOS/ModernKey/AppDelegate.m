@@ -185,7 +185,7 @@ extern bool convertToolDontAlertWhenCompleted;
     statusItem.button.alternateImage = [NSImage imageNamed:@"StatusHighlighted"];
     statusItem.button.target = self;
     statusItem.button.action = @selector(onStatusBarButtonClicked:);
-    [statusItem.button sendActionOn:(NSEventMaskLeftMouseUp | NSEventMaskRightMouseUp)];
+    [statusItem.button sendActionOn:NSEventMaskLeftMouseUp];
     
     theMenu = [[NSMenu alloc] initWithTitle:@""];
     [theMenu setAutoenablesItems:NO];
@@ -229,23 +229,11 @@ extern bool convertToolDontAlertWhenCompleted;
 
 -(void)onStatusBarButtonClicked:(id)sender {
     NSEvent *event = [NSApp currentEvent];
-    if (event && (event.type == NSEventTypeRightMouseUp ||
-                 (event.type == NSEventTypeLeftMouseUp && (event.modifierFlags & NSEventModifierFlagControl)))) {
-        // Right-click or Ctrl+click → show context menu
+    if (event && event.type == NSEventTypeLeftMouseUp) {
         [theMenu popUpMenuPositioningItem:nil
                                atLocation:NSMakePoint(0, NSHeight(statusItem.button.bounds))
                                    inView:statusItem.button];
-        return;
     }
-    // Left-click → activate the app SYNCHRONOUSLY while the user interaction
-    // token is still valid (macOS 14+ requires this to un-dim the window),
-    // then open the settings panel.
-    [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
-    [NSApp activateIgnoringOtherApps:YES];
-#pragma clang diagnostic pop
-    [self onControlPanelSelected];
 }
 
 -(void)setQuickConvertString {
@@ -528,7 +516,18 @@ extern bool convertToolDontAlertWhenCompleted;
     if ([NSApp activationPolicy] != NSApplicationActivationPolicyRegular) {
         [NSApp setActivationPolicy:NSApplicationActivationPolicyRegular];
     }
-    [win makeKeyAndOrderFront:nil];
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [NSApp activateIgnoringOtherApps:YES];
+#pragma clang diagnostic pop
+    [win makeKeyAndOrderFront:self];
+    dispatch_async(dispatch_get_main_queue(), ^{
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+        [NSApp activateIgnoringOtherApps:YES];
+#pragma clang diagnostic pop
+        [win makeKeyAndOrderFront:self];
+    });
 }
 
 -(void)windowWillClose:(NSNotification *)notification {

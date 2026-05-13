@@ -25,7 +25,7 @@ extern NSString* ConvertUtil(NSString* str);
 
 }
 static BOOL _isInited = NO;
-static const BOOL kUpdateCheckTemporarilyDisabled = YES;
+static const BOOL kUpdateCheckTemporarilyDisabled = NO;
 
 static CFMachPortRef      eventTap;
 static CGEventMask        eventMask;
@@ -104,7 +104,20 @@ static CFRunLoopSourceRef runLoopSource;
 }
 
 +(NSString*)getBuildDate {
-    return [NSString stringWithUTF8String:__DATE__];
+    NSString *buildDate = [NSString stringWithUTF8String:__DATE__];
+    NSDateFormatter *parser = [[NSDateFormatter alloc] init];
+    parser.locale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    parser.dateFormat = @"MMM d yyyy";
+
+    NSDate *date = [parser dateFromString:buildDate];
+    if (date == nil) {
+        return buildDate;
+    }
+
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.locale = [NSLocale localeWithLocaleIdentifier:@"vi_VN"];
+    formatter.dateFormat = @"dd/MM/yyyy";
+    return [formatter stringFromDate:date];
 }
 
 #pragma mark -Convert feature

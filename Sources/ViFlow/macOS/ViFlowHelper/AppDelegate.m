@@ -29,7 +29,9 @@
         NSString* path = [[NSBundle mainBundle] bundlePath];
         for (int i = 0; i < 4; i++)
             path = [path stringByDeletingLastPathComponent];
-        [[NSWorkspace sharedWorkspace] launchApplication:path];
+        NSURL *url = [NSURL fileURLWithPath:path];
+        NSWorkspaceOpenConfiguration *config = [NSWorkspaceOpenConfiguration configuration];
+        [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
     }
 }
 

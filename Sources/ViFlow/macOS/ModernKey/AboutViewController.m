@@ -19,9 +19,8 @@
     [super viewDidLoad];
     // Do view setup here.
     
-    self.VersionInfo.stringValue = [NSString stringWithFormat:@"Phiên bản %@ (build %@) - Ngày cập nhật %@",
+    self.VersionInfo.stringValue = [NSString stringWithFormat:@"Phiên bản %@ - Cập nhật ngày %@.",
                                     [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleShortVersionString"],
-                                    [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleVersion"],
                                     [ViFlowManager getBuildDate]] ;
     
     NSInteger dontCheckUpdate = [[NSUserDefaults standardUserDefaults] integerForKey:@"DontCheckUpdate"];
