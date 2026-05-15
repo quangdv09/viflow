@@ -50,20 +50,11 @@
 		A10000000000000000000006 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 237559B92204156000FB8CB9 /* MainMenu.xib */; };
 		A10000000000000000000007 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238519FB21F1BF4900E79A41 /* Cocoa.framework */; };
 		A534F32629D8B78100296F25 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23874B0F220160A500000BC8 /* Carbon.framework */; };
+		B10000000000000000000001 /* ViFlowUpdate.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = B10000000000000000000002 /* ViFlowUpdate.app */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B10000000000000000000003 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000014 /* AppDelegate.m */; };
+		B10000000000000000000004 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B10000000000000000000016 /* main.m */; };
+		B10000000000000000000005 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238519FB21F1BF4900E79A41 /* Cocoa.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		237559C4220417DD00FB8CB9 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = Contents/Library/LoginItems;
-			dstSubfolderSpec = 1;
-			files = (
-				A10000000000000000000001 /* ViFlowHelper.app in CopyFiles */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXContainerItemProxy section */
 		A10000000000000000000012 /* PBXContainerItemProxy */ = {
@@ -73,7 +64,28 @@
 			remoteGlobalIDString = A1000000000000000000000B;
 			remoteInfo = ViFlowHelper;
 		};
+		B10000000000000000000012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 232EDA4C21F1B33E0085D362 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B1000000000000000000000B;
+			remoteInfo = ViFlowUpdate;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		237559C4220417DD00FB8CB9 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				A10000000000000000000001 /* ViFlowHelper.app in CopyFiles */,
+				B10000000000000000000001 /* ViFlowUpdate.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		23136D90231FBD49000764E6 /* ConvertToolViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertToolViewController.h; sourceTree = "<group>"; };
@@ -92,12 +104,9 @@
 		232EDA6221F1B33F0085D362 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		232EDA6321F1B33F0085D362 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		232EDA6521F1B33F0085D362 /* ViFlow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ViFlow.entitlements; sourceTree = "<group>"; };
-		23310EA12314F31400226CA5 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		233C4A6D231F923D00DD7052 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		233C4A6F231F937900DD7052 /* ConvertTool.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = ConvertTool.cpp; sourceTree = "<group>"; };
 		233C4A71231F938800DD7052 /* ConvertTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConvertTool.h; sourceTree = "<group>"; };
-		233D800222F7D1F000E02DC6 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
-		2344220522F42F70009E47D4 /* ViFlow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ViFlow.entitlements; sourceTree = "<group>"; };
 		2345899822F720D7003E0923 /* MacroViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MacroViewController.h; sourceTree = "<group>"; };
 		2345899922F720D7003E0923 /* MacroViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = MacroViewController.mm; sourceTree = "<group>"; };
 		234F70A821FB50BC00D2F2CA /* StatusHighlightedEng.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = StatusHighlightedEng.png; sourceTree = "<group>"; };
@@ -130,13 +139,6 @@
 		238AF96822042E2500AEFA17 /* ThumbUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ThumbUp@2x.png"; sourceTree = "<group>"; };
 		238AF97022042EC600AEFA17 /* Icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Icon.icns; sourceTree = "<group>"; };
 		23963B4F22040C720097189E /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
-		2397059323143266002DDEA7 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		2397059423143266002DDEA7 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		2397059623143267002DDEA7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2397059923143267002DDEA7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		2397059B23143267002DDEA7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2397059C23143267002DDEA7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		2397059E23143267002DDEA7 /* ViFlowUpdate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ViFlowUpdate.entitlements; sourceTree = "<group>"; };
 		23A984BE220ED07E000914A2 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		23CA6D1522F0439100804D6E /* MyTextField.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyTextField.h; sourceTree = "<group>"; };
 		23CA6D1622F0439100804D6E /* MyTextField.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyTextField.m; sourceTree = "<group>"; };
@@ -152,6 +154,12 @@
 		23F512832336386200397988 /* MJAccessibilityUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJAccessibilityUtils.m; sourceTree = "<group>"; };
 		23F512842336386200397988 /* MJAccessibilityUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJAccessibilityUtils.h; sourceTree = "<group>"; };
 		A10000000000000000000002 /* ViFlowHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ViFlowHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B10000000000000000000002 /* ViFlowUpdate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ViFlowUpdate.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B10000000000000000000013 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		B10000000000000000000014 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		B10000000000000000000015 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B10000000000000000000016 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B10000000000000000000017 /* ViFlowUpdate.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ViFlowUpdate.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +182,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A10000000000000000000007 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B10000000000000000000009 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10000000000000000000005 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -204,12 +220,10 @@
 			isa = PBXGroup;
 			children = (
 				23E2E4932314FD3A006CCC3E /* engine */,
-				2344220522F42F70009E47D4 /* ViFlow.entitlements */,
 				232EDA5621F1B33E0085D362 /* ModernKey */,
-				233D800122F7D1F000E02DC6 /* ViFlowTest */,
-				2397059223143266002DDEA7 /* ViFlowUpdate */,
 				232EDA5521F1B33E0085D362 /* Products */,
 				237559B32204156000FB8CB9 /* ViFlowHelper */,
+				B10000000000000000000018 /* ViFlowUpdate */,
 				238519F121F1B8E200E79A41 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -219,6 +233,7 @@
 			children = (
 				232EDA5421F1B33E0085D362 /* ViFlow.app */,
 				A10000000000000000000002 /* ViFlowHelper.app */,
+				B10000000000000000000002 /* ViFlowUpdate.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -253,22 +268,6 @@
 			path = ModernKey;
 			sourceTree = "<group>";
 		};
-		23310EA02314F31400226CA5 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				23310EA12314F31400226CA5 /* Icon.icns */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		233D800122F7D1F000E02DC6 /* ViFlowTest */ = {
-			isa = PBXGroup;
-			children = (
-				233D800222F7D1F000E02DC6 /* main.mm */,
-			);
-			path = ViFlowTest;
-			sourceTree = "<group>";
-		};
 		237559B32204156000FB8CB9 /* ViFlowHelper */ = {
 			isa = PBXGroup;
 			children = (
@@ -281,6 +280,18 @@
 				237559BF2204156000FB8CB9 /* ViFlowHelper.entitlements */,
 			);
 			path = ViFlowHelper;
+			sourceTree = "<group>";
+		};
+		B10000000000000000000018 /* ViFlowUpdate */ = {
+			isa = PBXGroup;
+			children = (
+				B10000000000000000000013 /* AppDelegate.h */,
+				B10000000000000000000014 /* AppDelegate.m */,
+				B10000000000000000000015 /* Info.plist */,
+				B10000000000000000000016 /* main.m */,
+				B10000000000000000000017 /* ViFlowUpdate.entitlements */,
+			);
+			path = ViFlowUpdate;
 			sourceTree = "<group>";
 		};
 		237724A2232BA3B800E92BDF /* platforms */ = {
@@ -306,21 +317,6 @@
 				238519F221F1B8E200E79A41 /* Foundation.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2397059223143266002DDEA7 /* ViFlowUpdate */ = {
-			isa = PBXGroup;
-			children = (
-				23310EA02314F31400226CA5 /* Resources */,
-				2397059323143266002DDEA7 /* AppDelegate.h */,
-				2397059423143266002DDEA7 /* AppDelegate.m */,
-				2397059623143267002DDEA7 /* Assets.xcassets */,
-				2397059823143267002DDEA7 /* MainMenu.xib */,
-				2397059B23143267002DDEA7 /* Info.plist */,
-				2397059C23143267002DDEA7 /* main.m */,
-				2397059E23143267002DDEA7 /* ViFlowUpdate.entitlements */,
-			);
-			path = ViFlowUpdate;
 			sourceTree = "<group>";
 		};
 		23E2E4932314FD3A006CCC3E /* engine */ = {
@@ -359,6 +355,7 @@
 			);
 			dependencies = (
 				A1000000000000000000000F /* PBXTargetDependency */,
+				B1000000000000000000000F /* PBXTargetDependency */,
 			);
 			name = ViFlow;
 			productName = ModernKey;
@@ -382,6 +379,23 @@
 			productReference = A10000000000000000000002 /* ViFlowHelper.app */;
 			productType = "com.apple.product-type.application";
 		};
+		B1000000000000000000000B /* ViFlowUpdate */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B1000000000000000000000E /* Build configuration list for PBXNativeTarget "ViFlowUpdate" */;
+			buildPhases = (
+				B10000000000000000000008 /* Sources */,
+				B10000000000000000000009 /* Frameworks */,
+				B1000000000000000000000A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ViFlowUpdate;
+			productName = ViFlowUpdate;
+			productReference = B10000000000000000000002 /* ViFlowUpdate.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -389,7 +403,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 2640;
+				LastUpgradeCheck = 2650;
 				ORGANIZATIONNAME = "Do Vinh Quang";
 				TargetAttributes = {
 					232EDA5321F1B33E0085D362 = {
@@ -401,6 +415,9 @@
 						};
 					};
 					A1000000000000000000000B = {
+						CreatedOnToolsVersion = 10.1;
+					};
+					B1000000000000000000000B = {
 						CreatedOnToolsVersion = 10.1;
 					};
 				};
@@ -420,6 +437,7 @@
 			targets = (
 				232EDA5321F1B33E0085D362 /* ViFlow */,
 				A1000000000000000000000B /* ViFlowHelper */,
+				B1000000000000000000000B /* ViFlowUpdate */,
 			);
 		};
 /* End PBXProject section */
@@ -453,6 +471,13 @@
 			files = (
 				A10000000000000000000006 /* MainMenu.xib in Resources */,
 				A10000000000000000000005 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B1000000000000000000000A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -490,6 +515,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		B10000000000000000000008 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10000000000000000000004 /* main.m in Sources */,
+				B10000000000000000000003 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -497,6 +531,11 @@
 			isa = PBXTargetDependency;
 			target = A1000000000000000000000B /* ViFlowHelper */;
 			targetProxy = A10000000000000000000012 /* PBXContainerItemProxy */;
+		};
+		B1000000000000000000000F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B1000000000000000000000B /* ViFlowUpdate */;
+			targetProxy = B10000000000000000000012 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -513,14 +552,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				237559BA2204156000FB8CB9 /* Base */,
-			);
-			name = MainMenu.xib;
-			sourceTree = "<group>";
-		};
-		2397059823143267002DDEA7 /* MainMenu.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				2397059923143267002DDEA7 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";
@@ -749,6 +780,56 @@
 			};
 			name = Release;
 		};
+		B1000000000000000000000C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ViFlowUpdate/ViFlowUpdate.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = D2DTX7NUDL;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = ViFlowUpdate/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.0.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.quangdv09.viflow.update;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		B1000000000000000000000D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = ViFlowUpdate/ViFlowUpdate.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 4;
+				DEVELOPMENT_TEAM = D2DTX7NUDL;
+				ENABLE_HARDENED_RUNTIME = YES;
+				INFOPLIST_FILE = ViFlowUpdate/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MARKETING_VERSION = 1.0.4;
+				PRODUCT_BUNDLE_IDENTIFIER = com.quangdv09.viflow.update;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -775,6 +856,15 @@
 			buildConfigurations = (
 				A1000000000000000000000C /* Debug */,
 				A1000000000000000000000D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B1000000000000000000000E /* Build configuration list for PBXNativeTarget "ViFlowUpdate" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B1000000000000000000000C /* Debug */,
+				B1000000000000000000000D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

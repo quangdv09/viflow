@@ -1,23 +1,25 @@
-
 # [ViFlow](https://github.com/quangdv09/viflow)
+
 ### [Download bản mới nhất](https://github.com/quangdv09/viflow/releases)
+
 [![GitHub release](https://img.shields.io/github/v/release/quangdv09/viflow.svg)](https://github.com/quangdv09/viflow/releases/latest)
 
 ### Open source Vietnamese Input App for macOS - Bộ gõ tiếng Việt nguồn mở cho macOS.
+
 Bộ gõ tiếng Việt mới cho macOS, sử dụng kỹ thuật `Backspace`. Loại bỏ lỗi gạch chân khó chịu ở bộ gõ mặc định. Hoàn toàn miễn phí và là nguồn mở, luôn cập nhật và phát triển.
 
 ### Mã nguồn của ứng dụng được mở công khai, minh bạch dưới giấy phép GPL. Điều này nghĩa là bạn hoàn toàn có thể tải mã nguồn về tự build, cải tiến theo mục đích của bạn. Nếu bạn tái phân phối bản cải tiến của bạn, thì nó cũng phải là mã nguồn mở và ghi nhận nguồn gốc dự án.
 
 ### Lưu ý, khi sử dụng ViFlow, bạn nên tắt hẳn bộ gõ khác vì 2 chương trình bộ gõ sẽ xung đột nhau, dẫn đến thao tác không chính xác.
 
-
-
 ## Hỗ trợ kiểu gõ
+
 - Telex
 - VNI
 - Simple Telex
 
 ## Bảng mã thông dụng:
+
 - Unicode (Unicode dựng sẵn).
 - TCVN3 (ABC).
 - VNI Windows.
@@ -26,6 +28,7 @@ Bộ gõ tiếng Việt mới cho macOS, sử dụng kỹ thuật `Backspace`. L
 - ...
 
 ## Tính năng:
+
 - **Modern orthography** (On/Off) - Đặt dấu oà, uý thay vì òa, úy.
 - **Quick Telex** (On/Off) - Gõ nhanh (cc=ch, gg=gi, kk=kh, nn=ng, qq=qu, pp=ph, tt=th).
 - **Grammar check** (On/Off) - Kiểm tra ngữ pháp.
@@ -51,24 +54,27 @@ Bộ gõ tiếng Việt mới cho macOS, sử dụng kỹ thuật `Backspace`. L
 - **Tự ghi nhớ bảng mã theo ứng dụng:** (Bản 2.0.1 về sau) Phù hợp cho các bạn dùng Photoshop, CAD,... với các bảng mã VNI, TCVN3. ViFlow tự ghi nhớ ứng dụng nào dùng bảng mã nào để lần sau sử dụng Photoshop, CAD,... ViFlow có thể tự chuyển sang bảng mã đó.
 - ...
 
-
 [Changelog](https://github.com/quangdv09/viflow/blob/main/CHANGELOG.md)
 
 ## Cài đặt:
-**Cài đặt thủ công:**  
+
+**Cài đặt thủ công:**
 Tải bản ViFlow mới nhất từ [đây](https://github.com/quangdv09/viflow/releases/latest), giải nén file `.zip` rồi kéo thả `ViFlow.app` vào thư mục `Applications`.
 
 ## Mở ứng dụng lần đầu (Gatekeeper của macOS):
+
 Vì ViFlow không được ký bởi Apple Developer ID trả phí, macOS sẽ chặn khi mở lần đầu. Thực hiện một trong hai cách sau:
 
 **Cách 1 (khuyến nghị):** Nhấp chuột phải vào `ViFlow.app` → chọn **Open** → bấm **Open** trong hộp thoại cảnh báo.
 
 **Cách 2:** Nếu macOS vẫn chặn, vào **System Settings** → **Privacy & Security**, tìm thông báo về `ViFlow.app`, bấm **Open Anyway**, rồi xác nhận **Open** để mở ứng dụng.
 
-## Note - Lưu ý:
+## Lưu ý:
+
 ViFlow cần cấp quyền, vào *System Settings -> Privacy & Security -> Accessibility*, kích hoạt `ViFlow.app`. **Không tắt nó khi đang dùng ViFlow**.
 
 ## Tác giả
+
 - ViFlow được phát triển từ mã nguồn gốc của tác giả Mai Vũ Tuyên.
 - Phát triển và duy trì bởi: Đỗ Vinh Quang
 - GitHub: [https://github.com/quangdv09/viflow](https://github.com/quangdv09/viflow)

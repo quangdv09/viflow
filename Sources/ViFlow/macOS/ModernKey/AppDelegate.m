@@ -112,6 +112,7 @@ extern bool convertToolDontAlertWhenCompleted;
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     appDelegate = self;
     
+    [self createApplicationMenu];
     [self registerSupportedNotification];
     
     //set quick tooltip
@@ -169,6 +170,31 @@ extern bool convertToolDontAlertWhenCompleted;
     [appDelegate setRunOnStartup:val];
 }
 
+-(void)createApplicationMenu {
+    NSMenu *mainMenu = [[NSMenu alloc] initWithTitle:@"Main Menu"];
+    NSMenuItem *appMenuItem = [[NSMenuItem alloc] initWithTitle:@"" action:nil keyEquivalent:@""];
+    [mainMenu addItem:appMenuItem];
+
+    NSMenu *appMenu = [[NSMenu alloc] initWithTitle:@"ViFlow"];
+
+    NSMenuItem *preferencesItem = [[NSMenuItem alloc] initWithTitle:@"Cài đặt"
+                                                             action:@selector(onControlPanelSelected:)
+                                                      keyEquivalent:@","];
+    preferencesItem.target = self;
+    [appMenu addItem:preferencesItem];
+
+    [appMenu addItem:[NSMenuItem separatorItem]];
+
+    NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:@"Thoát ViFlow"
+                                                      action:@selector(terminate:)
+                                               keyEquivalent:@"q"];
+    quitItem.target = NSApp;
+    [appMenu addItem:quitItem];
+
+    appMenuItem.submenu = appMenu;
+    [NSApp setMainMenu:mainMenu];
+}
+
 - (BOOL)applicationShouldHandleReopen:(NSApplication *)sender hasVisibleWindows:(BOOL)flag {
     [self onControlPanelSelected];
     return YES;
@@ -180,60 +206,99 @@ extern bool convertToolDontAlertWhenCompleted;
 
 -(void) createStatusBarMenu {
     NSStatusBar *statusBar = [NSStatusBar systemStatusBar];
-    statusItem = [statusBar statusItemWithLength:NSVariableStatusItemLength];
+    statusItem = [statusBar statusItemWithLength:NSSquareStatusItemLength];
+
     statusItem.button.image = [NSImage imageNamed:@"Status"];
     statusItem.button.alternateImage = [NSImage imageNamed:@"StatusHighlighted"];
-    statusItem.button.target = self;
-    statusItem.button.action = @selector(onStatusBarButtonClicked:);
-    [statusItem.button sendActionOn:NSEventMaskLeftMouseUp];
-    
+
     theMenu = [[NSMenu alloc] initWithTitle:@""];
     [theMenu setAutoenablesItems:NO];
-    
-    menuInputMethod = [theMenu addItemWithTitle:@"Bật Tiếng Việt"
-                                                     action:@selector(onInputMethodSelected)
-                                              keyEquivalent:@""];
-    [theMenu addItem:[NSMenuItem separatorItem]];
-    NSMenuItem* menuInputType = [theMenu addItemWithTitle:@"Kiểu gõ" action:nil keyEquivalent:@""];
-    
-    [theMenu addItem:[NSMenuItem separatorItem]];
-    
-    mnuUnicode = [theMenu addItemWithTitle:@"Unicode dựng sẵn" action:@selector(onCodeSelected:) keyEquivalent:@""];
-    mnuUnicode.tag = 0;
-    mnuTCVN = [theMenu addItemWithTitle:@"TCVN3 (ABC)" action:@selector(onCodeSelected:) keyEquivalent:@""];
-    mnuTCVN.tag = 1;
-    mnuVNIWindows = [theMenu addItemWithTitle:@"VNI Windows" action:@selector(onCodeSelected:) keyEquivalent:@""];
-    mnuVNIWindows.tag = 2;
-    NSMenuItem* menuCode = [theMenu addItemWithTitle:@"Bảng mã khác" action:nil keyEquivalent:@""];
-    
-    [theMenu addItem:[NSMenuItem separatorItem]];
-    
-    [theMenu addItemWithTitle:@"Công cụ chuyển mã..." action:@selector(onConvertTool) keyEquivalent:@""];
-    mnuQuickConvert = [theMenu addItemWithTitle:@"Chuyển mã nhanh" action:@selector(onQuickConvert) keyEquivalent:@""];
-    
-    [theMenu addItem:[NSMenuItem separatorItem]];
-    
-    [theMenu addItemWithTitle:@"Bảng điều khiển..." action:@selector(onControlPanelSelected) keyEquivalent:@""];
-    [theMenu addItemWithTitle:@"Gõ tắt..." action:@selector(onMacroSelected) keyEquivalent:@""];
-    [theMenu addItemWithTitle:@"Giới thiệu" action:@selector(onAboutSelected) keyEquivalent:@""];
-    [theMenu addItem:[NSMenuItem separatorItem]];
-    
-    [theMenu addItemWithTitle:@"Thoát" action:@selector(terminate:) keyEquivalent:@"q"];
-    
-    
-    [self setInputTypeMenu:menuInputType];
-    [self setCodeMenu:menuCode];
-    
-    [self fillData];
-}
 
--(void)onStatusBarButtonClicked:(id)sender {
-    NSEvent *event = [NSApp currentEvent];
-    if (event && event.type == NSEventTypeLeftMouseUp) {
-        [theMenu popUpMenuPositioningItem:nil
-                               atLocation:NSMakePoint(0, NSHeight(statusItem.button.bounds))
-                                   inView:statusItem.button];
-    }
+    menuInputMethod = [theMenu addItemWithTitle:@"Bật Tiếng Việt"
+                                         action:@selector(onInputMethodSelected)
+                                  keyEquivalent:@""];
+    menuInputMethod.target = self;
+
+    [theMenu addItem:[NSMenuItem separatorItem]];
+
+    NSMenuItem* menuInputType = [theMenu addItemWithTitle:@"Kiểu gõ"
+                                                   action:nil
+                                            keyEquivalent:@""];
+
+    [theMenu addItem:[NSMenuItem separatorItem]];
+
+    // mnuUnicode = [theMenu addItemWithTitle:@"Unicode dựng sẵn"
+    //                                 action:@selector(onCodeSelected:)
+    //                          keyEquivalent:@""];
+    // mnuUnicode.tag = 0;
+    // mnuUnicode.target = self;
+
+    // mnuTCVN = [theMenu addItemWithTitle:@"TCVN3 (ABC)"
+    //                              action:@selector(onCodeSelected:)
+    //                       keyEquivalent:@""];
+    // mnuTCVN.tag = 1;
+    // mnuTCVN.target = self;
+
+    // mnuVNIWindows = [theMenu addItemWithTitle:@"VNI Windows"
+    //                                    action:@selector(onCodeSelected:)
+    //                             keyEquivalent:@""];
+    // mnuVNIWindows.tag = 2;
+    // mnuVNIWindows.target = self;
+
+    // NSMenuItem* menuCode = [theMenu addItemWithTitle:@"Bảng mã khác"
+    //                                           action:nil
+    //                                    keyEquivalent:@""];
+
+    // [theMenu addItem:[NSMenuItem separatorItem]];
+
+    // NSMenuItem *convertItem = [theMenu addItemWithTitle:@"Công cụ chuyển mã..."
+    //                                              action:@selector(onConvertTool)
+    //                                       keyEquivalent:@""];
+    // convertItem.target = self;
+
+    // mnuQuickConvert = [theMenu addItemWithTitle:@"Chuyển mã nhanh"
+    //                                      action:@selector(onQuickConvert)
+    //                               keyEquivalent:@""];
+    // mnuQuickConvert.target = self;
+
+    // [theMenu addItem:[NSMenuItem separatorItem]];
+
+    NSMenuItem *controlPanelItem = [theMenu addItemWithTitle:@"Bảng điều khiển..."
+                                                      action:@selector(onControlPanelSelected)
+                                               keyEquivalent:@""];
+    controlPanelItem.target = self;
+
+    NSMenuItem *macroItem = [theMenu addItemWithTitle:@"Gõ tắt..."
+                                               action:@selector(onMacroSelected)
+                                        keyEquivalent:@""];
+    macroItem.target = self;
+
+    [theMenu addItem:[NSMenuItem separatorItem]];
+
+    NSMenuItem *checkUpdateItem = [theMenu addItemWithTitle:@"Kiểm tra bản mới..."
+                                                     action:@selector(onCheckNewVersionSelected)
+                                              keyEquivalent:@""];
+    checkUpdateItem.target = self;
+
+    // NSMenuItem *aboutItem = [theMenu addItemWithTitle:@"Giới thiệu"
+    //                                            action:@selector(onAboutSelected)
+    //                                     keyEquivalent:@""];
+    // aboutItem.target = self;
+
+    [theMenu addItem:[NSMenuItem separatorItem]];
+
+    NSMenuItem *quitItem = [theMenu addItemWithTitle:@"Thoát"
+                                              action:@selector(terminate:)
+                                       keyEquivalent:@"q"];
+    quitItem.target = NSApp;
+
+    [self setInputTypeMenu:menuInputType];
+    // [self setCodeMenu:menuCode];
+
+    // Gán menu trực tiếp cho status item để macOS tự xử lý vị trí hiển thị menu.
+    statusItem.menu = theMenu;
+
+    [self fillData];
 }
 
 -(void)setQuickConvertString {
@@ -344,29 +409,52 @@ extern bool convertToolDontAlertWhenCompleted;
 #pragma mark -StatusBar menu data
 
 - (void)setInputTypeMenu:(NSMenuItem*) parent {
-    //sub for Kieu Go
     NSMenu *sub = [[NSMenu alloc] initWithTitle:@""];
     [sub setAutoenablesItems:NO];
-    mnuTelex = [sub addItemWithTitle:@"Telex" action:@selector(onInputTypeSelected:) keyEquivalent:@""];
+
+    mnuTelex = [sub addItemWithTitle:@"Telex"
+                              action:@selector(onInputTypeSelected:)
+                       keyEquivalent:@""];
     mnuTelex.tag = 0;
-    mnuVNI = [sub addItemWithTitle:@"VNI" action:@selector(onInputTypeSelected:) keyEquivalent:@""];
+    mnuTelex.target = self;
+
+    mnuVNI = [sub addItemWithTitle:@"VNI"
+                            action:@selector(onInputTypeSelected:)
+                     keyEquivalent:@""];
     mnuVNI.tag = 1;
-    mnuSimpleTelex1 = [sub addItemWithTitle:@"Simple Telex 1" action:@selector(onInputTypeSelected:) keyEquivalent:@""];
-    mnuSimpleTelex1.tag = 2;
-    mnuSimpleTelex2 = [sub addItemWithTitle:@"Simple Telex 2" action:@selector(onInputTypeSelected:) keyEquivalent:@""];
-    mnuSimpleTelex2.tag = 3;
+    mnuVNI.target = self;
+
+    // mnuSimpleTelex1 = [sub addItemWithTitle:@"Simple Telex 1"
+    //                                  action:@selector(onInputTypeSelected:)
+    //                           keyEquivalent:@""];
+    // mnuSimpleTelex1.tag = 2;
+    // mnuSimpleTelex1.target = self;
+
+    // mnuSimpleTelex2 = [sub addItemWithTitle:@"Simple Telex 2"
+    //                                  action:@selector(onInputTypeSelected:)
+    //                           keyEquivalent:@""];
+    // mnuSimpleTelex2.tag = 3;
+    // mnuSimpleTelex2.target = self;
+
     [theMenu setSubmenu:sub forItem:parent];
 }
 
 - (void)setCodeMenu:(NSMenuItem*) parent {
-    //sub for Code
     NSMenu *sub = [[NSMenu alloc] initWithTitle:@""];
     [sub setAutoenablesItems:NO];
-    mnuUnicodeComposite = [sub addItemWithTitle:@"Unicode tổ hợp" action:@selector(onCodeSelected:) keyEquivalent:@""];
+
+    mnuUnicodeComposite = [sub addItemWithTitle:@"Unicode tổ hợp"
+                                         action:@selector(onCodeSelected:)
+                                  keyEquivalent:@""];
     mnuUnicodeComposite.tag = 3;
-    mnuVietnameseLocaleCP1258 = [sub addItemWithTitle:@"Vietnamese Locale CP 1258" action:@selector(onCodeSelected:) keyEquivalent:@""];
+    mnuUnicodeComposite.target = self;
+
+    mnuVietnameseLocaleCP1258 = [sub addItemWithTitle:@"Vietnamese Locale CP 1258"
+                                               action:@selector(onCodeSelected:)
+                                        keyEquivalent:@""];
     mnuVietnameseLocaleCP1258.tag = 4;
-    
+    mnuVietnameseLocaleCP1258.target = self;
+
     [theMenu setSubmenu:sub forItem:parent];
 }
 
@@ -549,6 +637,11 @@ extern bool convertToolDontAlertWhenCompleted;
     
     [_macroWC.window makeKeyAndOrderFront:nil];
     [_macroWC.window setLevel:NSFloatingWindowLevel];
+}
+
+-(void)onCheckNewVersionSelected {
+    [ViFlowManager checkNewVersion:nil callbackFunc:^{
+    }];
 }
 
 -(void) onAboutSelected {

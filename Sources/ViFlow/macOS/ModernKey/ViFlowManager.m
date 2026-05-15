@@ -45,11 +45,7 @@ static CFRunLoopSourceRef runLoopSource;
     // Create an event tap. We are interested in key presses.
     eventMask = ((1 << kCGEventKeyDown) |
                  (1 << kCGEventKeyUp) |
-                 (1 << kCGEventFlagsChanged) |
-                 (1 << kCGEventLeftMouseDown) |
-                 (1 << kCGEventRightMouseDown) |
-                 (1 << kCGEventLeftMouseDragged) |
-                 (1 << kCGEventRightMouseDragged));
+                 (1 << kCGEventFlagsChanged));
     
     eventTap = CGEventTapCreate(kCGSessionEventTap,
                                 kCGHeadInsertEventTap,
@@ -231,22 +227,31 @@ static CFRunLoopSourceRef runLoopSource;
         [alert addButtonWithTitle:@"Không"];
     }
     if (parent == nil) {
-        [alert.window makeKeyAndOrderFront:nil];
         [alert.window setLevel:NSStatusWindowLevel];
+        [alert.window setMovableByWindowBackground:YES];
+        [alert.window center];
         NSModalResponse res = [alert runModal];
         if (res == 1000 && needUpdating) {
-            [self launchUpdateHelper];
+            [self launchUpdateHelperForVersion:versionString];
         }
     } else {
         [alert beginSheetModalForWindow:parent completionHandler:^(NSModalResponse returnCode) {
             if (returnCode == 1000 && needUpdating) {
-                [self launchUpdateHelper];
+                [self launchUpdateHelperForVersion:versionString];
             }
         }];
     }
 }
 
-+(void)launchUpdateHelper {
++(void)launchUpdateHelperForVersion:(NSString*)versionString {
+    NSString *updateBundlePath = [self getUpdateBundlePath];
+    if (![[NSFileManager defaultManager] fileExistsAtPath:updateBundlePath]) {
+        [self showMessage:nil
+                  message:@"Không tìm thấy bộ cập nhật"
+                   subMsg:@"ViFlowUpdate.app chưa được nhúng trong ViFlow.app. Vui lòng tải bản mới thủ công từ GitHub Releases."];
+        return;
+    }
+
     //check update app has exist or not
     NSError *copyError = nil;
     NSString* target = [NSString stringWithFormat:@"%@/ViFlowUpdate.app", [self getApplicationSupportFolder]];
@@ -254,22 +259,33 @@ static CFRunLoopSourceRef runLoopSource;
     if (![[NSFileManager defaultManager] fileExistsAtPath:target]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:[self getApplicationSupportFolder] withIntermediateDirectories:YES attributes:nil error:nil];
         
-        if (![[NSFileManager defaultManager] copyItemAtPath:[self getUpdateBundlePath] toPath:target error:&copyError]) {
-            NSLog(@"Error on copy");
+        if (![[NSFileManager defaultManager] copyItemAtPath:updateBundlePath toPath:target error:&copyError]) {
+            [self showMessage:nil
+                      message:@"Không thể chuẩn bị bộ cập nhật"
+                       subMsg:copyError.localizedDescription ?: @"Vui lòng thử lại sau."];
+            return;
         }
     }
     
     NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
     NSURL *url = [NSURL fileURLWithPath:target];
     NSWorkspaceOpenConfiguration *config = [[NSWorkspaceOpenConfiguration alloc] init];
-    [config setArguments:@[@"yeah"]];
+    NSString *versionArgument = [NSString stringWithFormat:@"--version=%@", versionString ?: @""];
+    NSString *appPathArgument = [NSString stringWithFormat:@"--app-path=%@", [[NSBundle mainBundle] bundlePath]];
+    [config setArguments:@[versionArgument, appPathArgument]];
     [workspace openApplicationAtURL:url configuration:config completionHandler:^(NSRunningApplication *app, NSError *launchError) {
         if (launchError) {
-            NSLog(@"Error launching app: %@", launchError);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showMessage:nil
+                          message:@"Không thể mở bộ cập nhật"
+                           subMsg:launchError.localizedDescription ?: @"Vui lòng thử lại sau."];
+            });
+        } else {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [NSApp terminate:0]; //exit main app
+            });
         }
     }];
-    
-    [NSApp terminate:0]; //exit main app
 }
 
 +(NSString*)getApplicationSupportFolder {
